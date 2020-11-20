@@ -1,0 +1,25 @@
+#marco{
+    width: 80vw;
+    height: 80vh;
+    position: relative;
+    background-color: aqua;
+    border: 5px solid black;
+}
+
+#cuadrado{
+    width: 50px;
+  height: 50px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background-color: red;
+}
+
+.bala{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-color: yellow;
+}

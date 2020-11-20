@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" id="marco">
+        <div id="cuadrado"></div>
+    </div>
+    
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        document.addEventListener('keydown', alerta);
+        var cuadrado = document.getElementById('cuadrado');
+        var posX = cuadrado.offsetLeft;
+        var posY = cuadrado.offsetTop;
+        function alerta(event){
+            // alert(event.keyCode);
+            var distancia = 10;
+            console.log(cuadrado.offsetLeft);
+
+            
+            
+            switch(event.keyCode){
+                case 37:
+                    //left arrow
+                    if(cuadrado.offsetLeft > 0){
+                        posX = posX - distancia;
+
+                    }
+                    else{
+                        posX = posX;
+                    }
+                    // posX = posX + distancia;
+                    // cuadrado.style.left = posX + 'px';
+                    // alert(posX+'HGC');
+                    // alert(cuadrado.style.left);
+                    break;
+                
+                case 38:
+                    //up arrow
+                    if(cuadrado.offsetTop > 0){
+                        posY = posY - distancia;
+
+                    }
+                    else{
+                        posY = posY;
+                    }
+                    break;
+                
+                case 39:
+                    //rigth arrow
+                    if(cuadrado.offsetLeft + 60 < document.getElementById('marco').offsetWidth){
+                        posX = posX + distancia;
+
+                    }
+                    else{
+                        posX = posX;
+                    }
+                    break;
+
+                case 40:
+                    //down arrow
+                    if(cuadrado.offsetTop + 60 < document.getElementById('marco').offsetHeight){
+                        posY = posY + distancia;
+
+                    }
+                    else{
+                        posY = posY;
+                    }
+                    break;
+
+                case 32:{
+                    disparar();
+                }
+                    
+            }
+            
+            cuadrado.style.left = posX + 'px';
+            cuadrado.style.top = posY + 'px';
+
+        }
+
+        function crearCuadrado(){
+            var marco = document.getElementById('marco');
+            var divNuevo = document.createElement('div');
+            divNuevo.className = 'bala';
+            marco.appendChild(divNuevo)
+            moverBala(divNuevo);
+            
+            
+            function moverBala(elem){
+                // var balas = document.getElementsByClassName('bala');
+                
+                var posBalaX = document.getElementById('cuadrado').offsetLeft + 15;
+                var posBalay = document.getElementById('cuadrado').offsetTop + 15;
+                elem.style.top = posBalay + 'px';
+                var id = setInterval(velocidad, 3);
+                setTimeout(destruir,  2000)
+                function velocidad(){
+                    
+                    posBalaX = posBalaX + 1;
+                    
+                    elem.style.left= posBalaX + 'px';
+                }
+
+                function destruir(){
+                    document.getElementById('marco').removeChild(elem);
+                }
+            
+            }
+        }
+
+        function disparar(){
+            crearCuadrado();
+
+        }
+
+    
+        
+
+        
+    </script>
+</body>
+</html>
